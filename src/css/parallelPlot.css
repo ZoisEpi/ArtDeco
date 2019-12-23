@@ -1,0 +1,81 @@
+svg {
+    font: 10px sans-serif;
+}
+
+.background path {
+    fill: none;
+    shape-rendering: optimizeSpeed;
+}
+
+.foreground path {
+    fill: none;
+    shape-rendering: optimizeSpeed;
+}
+
+.brush .extent {
+    fill-opacity: .7;
+    stroke: #fff;
+    shape-rendering: optimizeSpeed;
+}
+
+.axis line,
+.axis path {
+    fill: none;
+    shape-rendering: optimizeSpeed;
+}
+
+.axis text {
+
+    cursor: move;
+}
+
+.axisWhite line,
+.axisWhite path {
+    stroke: white;
+}
+
+.axisWhite rect {
+    fill-opacity: 0.3;
+    stroke: black;
+    stroke-opacity: 0.5;
+    shape-rendering: "crispEdges";
+}
+
+.axisWhite text {
+    fill: white;
+    text-shadow: 0 1px 0 #111, 1px 0 0 #111, 0 -1px 0 #111, -1px 0 0 #111;
+}
+
+.axisBlack line,
+.axisBlack path {
+    stroke: black;
+}
+
+.axisBlack rect {
+    fill: black;
+    fill-opacity: 0.3;
+    stroke: white;
+    stroke-opacity: 0.5;
+    shape-rendering: "crispEdges";
+}
+
+.axisBlack text {
+    fill: black;
+    text-shadow: 0 1px 0 #D0D0D0, 1px 0 0 #D0D0D0, 0 -1px 0 #D0D0D0, -1px 0 0 #D0D0D0;
+}
+
+.brushDim .overlay {
+    cursor : pointer
+}
+
+
+div.sliderTooltip {
+    position: absolute;
+    padding: 5px;
+    font: 10px sans-serif;
+    border: solid;
+    border-radius: 3px;
+    border-width: 1px;
+    border-color: black;
+    pointer-events: none;
+}

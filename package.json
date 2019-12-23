@@ -1,0 +1,28 @@
+{
+    "name": "art-deco",
+    "version": "0.0.1",
+    "description": "Art Deco Anmimation in D3",
+    "dependencies": {
+        "d3": "4"
+    },
+    "devDependencies": {
+        "@types/d3": "^5.7.2",
+        "@types/jquery": "^3.3.31",
+        "@typescript-eslint/eslint-plugin": "^2.3.3",
+        "@typescript-eslint/parser": "^2.3.3",
+        "del": "^5.1.0",
+        "eslint": "^6.5.1",
+        "gulp": "^4.0.2",
+        "gulp-eslint": "^6.0.0",
+        "gulp-mocha": "^7.0.2",
+        "gulp-sourcemaps": "^2.6.5",
+        "gulp-typescript": "^5.0.1",
+        "mocha": "^6.2.0",
+        "typescript": "^3.6.3",
+        "gulp-zip": "^5.0.0"
+    },
+    "scripts": {
+        "build": "gulp buildParallelPlot",
+        "test": "mocha test/mocha/*.js"
+    }
+}
