@@ -1,3 +1,5 @@
+<link href="https://fonts.googleapis.com/css?family=Michroma&display=swap" rel="stylesheet">
+
 # Repository description
 
 ## `src/typescript` directory
