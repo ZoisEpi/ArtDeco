@@ -24,7 +24,7 @@ class GlowGradient {
             .attr("stdDeviation", 3)
             .attr("result", "colored2Blur");
     }
-    createLinearGradient(horizontal, colorMajor, colorHighlight, repeatMajorBetweenMajor, repeatPattern, id) {
+    createLinearGradient(horizontal, colorMajor, colorHighlight, repeatMajorBetweenMajor, repeatPattern, second, id) {
         let colors = [];
         for (let i = 0; i < repeatPattern; i++) {
             for (let j = 0; j < repeatMajorBetweenMajor; j++) {
@@ -32,9 +32,9 @@ class GlowGradient {
             }
             colors.push(colorHighlight);
         }
-        this.createMovingLinearGradient(0, horizontal ? 100 : 0, 0, horizontal ? 0 : 100, id, horizontal, colors);
+        this.createMovingLinearGradient(0, horizontal ? 100 : 0, 0, horizontal ? 0 : 100, id, horizontal, second, colors);
     }
-    createMovingLinearGradient(x1, x2, y1, y2, id, horizontal, colors) {
+    createMovingLinearGradient(x1, x2, y1, y2, id, horizontal, second, colors) {
         var linearGradient = this.defs.append("linearGradient")
             .attr("id", id);
         linearGradient
@@ -51,12 +51,57 @@ class GlowGradient {
         linearGradient.append("animate")
             .attr("attributeName", horizontal ? "x1" : "y1")
             .attr("values", "0%;200%")
-            .attr("dur", "10s")
+            .attr("dur", second + "s")
             .attr("repeatCount", "indefinite");
         linearGradient.append("animate")
             .attr("attributeName", horizontal ? "x2" : "y2")
             .attr("values", "100%;300%")
-            .attr("dur", "10s")
+            .attr("dur", second + "s")
+            .attr("repeatCount", "indefinite");
+    }
+    creatediagonalGradient(colorMajor, colorHighlight, repeatMajorBetweenMajor, repeatPattern, second, id) {
+        let colors = [];
+        for (let i = 0; i < repeatPattern; i++) {
+            for (let j = 0; j < repeatMajorBetweenMajor; j++) {
+                colors.push(colorMajor);
+            }
+            colors.push(colorHighlight);
+        }
+        this.createMovingDiagonalGradient(0, 100, 0, 100, id, second, colors);
+    }
+    createMovingDiagonalGradient(x1, x2, y1, y2, id, second, colors) {
+        var linearGradient = this.defs.append("linearGradient")
+            .attr("id", id);
+        linearGradient
+            .attr("x1", x1 + "%")
+            .attr("y1", y1 + "%")
+            .attr("x2", x2 + "%")
+            .attr("y2", y2 + "%")
+            .attr("spreadMethod", "reflect");
+        linearGradient.selectAll(".stop")
+            .data(colors)
+            .enter().append("stop")
+            .attr("offset", function (_d, i) { return i / (colors.length - 1); })
+            .attr("stop-color", function (d) { return d; });
+        linearGradient.append("animate")
+            .attr("attributeName", "x1")
+            .attr("values", "0%;200%")
+            .attr("dur", second + "s")
+            .attr("repeatCount", "indefinite");
+        linearGradient.append("animate")
+            .attr("attributeName", "x2")
+            .attr("values", "100%;300%")
+            .attr("dur", second + "s")
+            .attr("repeatCount", "indefinite");
+        linearGradient.append("animate")
+            .attr("attributeName", "y1")
+            .attr("values", "0%;200%")
+            .attr("dur", second + "s")
+            .attr("repeatCount", "indefinite");
+        linearGradient.append("animate")
+            .attr("attributeName", "y2")
+            .attr("values", "100%;300%")
+            .attr("dur", second + "s")
             .attr("repeatCount", "indefinite");
     }
 }
