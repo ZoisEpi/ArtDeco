@@ -1,9 +1,12 @@
 const width = 700;
 const height = 1000;
 const lightBlue = "#7DF9FF";
-const svg = d3.select("body").append("svg")
-    .attr("width", width)
-    .attr("height", height)
+const div = d3.select("body").append("div")
+    .style("height", "100vh")
+    .style("width", "100%");
+const svg = div.append("svg")
+    .attr("width", div.style("width"))
+    .attr("height", div.style("height"))
     .style("background", "black");
 const glowGradient = new GlowGradient(svg);
 svg.append("rect")
