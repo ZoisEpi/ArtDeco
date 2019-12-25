@@ -10,6 +10,7 @@ class ProjectArtDeco {
             .attr("height", div.style("height"))
             .style("background", "black");
 
+        new GlowGradient(svg);
         new ArtDecoBorder(svg);
     }
 }
