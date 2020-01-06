@@ -21,7 +21,7 @@ class ArtDecoBorder {
     buildRect(group) {
         const thisBorder = this;
         const sizeLargeRect = this.size;
-        const sizeSmallRect = this.size / 7.0;
+        const sizeSmallRect = 25; //this.size / 7.0;
         const delta = sizeSmallRect / 3.0;
         [delta * 2, delta, 0].forEach(function (d, i) {
             const lineRect = d3.line()([[d, d], [d + sizeLargeRect, d], [d + sizeLargeRect, d + sizeSmallRect],
