@@ -1,4 +1,4 @@
-const widthHarm = 1000
+const widthHarm = 700
 const heightHarm = 100
 
 const bronze = "#796221";
@@ -14,114 +14,66 @@ const svgSinusHarm = divSinusHarm.append("svg")
 
 const sinusGradient = new GlowGradient(svgSinusHarm);
 
-const ns = 20;
-const nsGlow = 20;
+const rect1 = svgSinusHarm.append("rect")
+.attr("x", 4)
+.attr("y", 4)
+.attr("width", widthHarm - 8)
+.attr("height", heightHarm - 8)
+.attr("stroke", bronze)
+.attr("fill", "none");
 
-const m = 200
-const ampl = 3
+sinusHarmInRectangle(svgSinusHarm, rect1, 20, 0, 8000);
 
+
+const rect5 = svgSinusHarm.append("rect")
+.attr("x", 4)
+.attr("y", 104)
+.attr("width", widthHarm - 8)
+.attr("height", heightHarm - 8)
+.attr("stroke", bronze)
+.attr("fill", "none");
+
+sinusHarmInRectangle(svgSinusHarm, rect5, 0, 10, 3000);
+
+const rect2 = svgSinusHarm.append("rect")
+.attr("x", 4)
+.attr("y", 204)
+.attr("width", widthHarm - 8)
+.attr("height", heightHarm - 8)
+.attr("stroke", bronze)
+.attr("fill", "none");
+
+sinusHarmInRectangle(svgSinusHarm, rect2, 10, 20, 7000);
+
+const rect3 = svgSinusHarm.append("rect")
+.attr("x", 4)
+.attr("y", 204)
+.attr("width", widthHarm - 8)
+.attr("height", heightHarm - 8)
+.attr("stroke", "none")
 //@ts-ignore
-let dataGlow = []
+.attr("fill", d3.color(bronze).darker(1).rgb())
+.attr("opacity", 0.7);
+
+
+
+const rect6 = svgSinusHarm.append("rect")
+.attr("x", 4)
+.attr("y", 304)
+.attr("width", widthHarm - 8)
+.attr("height", heightHarm - 8)
+.attr("stroke", bronze)
+.attr("fill", "none");
+
+sinusHarmInRectangle(svgSinusHarm, rect6, 10, 10, 4000);
 //@ts-ignore
-let dataSinus = []
-
-d3.range(nsGlow).forEach(_d => dataGlow.push({
-    cycles: Math.random() * 2,
-    ampl: Math.random() * 1.5,
-    shiftY: -2 + Math.random() * 4.0,
-    shiftPi: Math.random() * 2 * Math.PI
-
-}))
-
-d3.range(ns).forEach(_d => dataSinus.push({
-    cycles: Math.random() * 2,
-    ampl: Math.random() * 1.5,
-    shiftY: -2 + Math.random() * 4.0,
-    shiftPi: Math.random() * 2 * Math.PI
-
-}))
-
-const x = d3.scaleLinear()
-    .domain([0, m - 1])
-    .range([0, widthHarm]);
-
-const y = d3.scaleLinear()
-    .domain([-3.5, 3.5])
-    .range([heightHarm, 0]);
-
-const svgSinus = svgSinusHarm.append("g").attr("opacity", "0.8");
-
-let sinus = svgSinus.append("g")
-    .attr("class", "sinus")
-    .selectAll("path")
-    //@ts-ignore
-    .data(dataGlow)
-    .enter().append("path")
-    .attr("d", function (d) { return sinusHarm(d.cycles, m, d.ampl, d.shiftPi, d.shiftY, x, y) })
-    .attr("fill", "none")
-    .attr("stroke", bronze)
-    .style("stroke-opacity", 0.7)
-    .style("filter", "url(#blur)");
-
-
-
-let sinus2 = svgSinus.append("g")
-    .attr("class", "sinus2")
-    .selectAll("path")
-    //@ts-ignore
-    .data(dataSinus)
-    .enter().append("path")
-    .attr("d", function (d) { return sinusHarm(d.cycles, m, d.ampl, d.shiftPi, d.shiftY, x, y) })
-    .attr("fill", "none")
-    .attr("stroke", bronze)
-    .style("stroke-opacity", 0.3)
-
-svgSinusHarm.append("rect")
-    .attr("x", 4)
-    .attr("y", 4)
-    .attr("width", widthHarm - 8)
-    .attr("height", heightHarm - 8)
-    .attr("stroke", bronze)
-    .attr("fill", "none");
-
-const interval = d3.interval(() => {
-
-    let delta: number[] = [];
-    let opacity: number[] = [];
-    //@ts-ignore
-    dataGlow.forEach(_d => {
-        delta.push(-0.5 + Math.random());
-        opacity.push(Math.random())
-    }
-    )
-
-
-    sinus
-        .transition().
-        duration(3000).ease(d3.easeLinear)
-        //@ts-ignore	
-        .attrTween("d", function (d, i) {
-            return function (t: number) {
-                return sinusHarm(d.cycles, m, d.ampl + (Math.sin(t * 2 * Math.PI)) * (delta[i]), d.shiftPi + t * 2 * Math.PI, d.shiftY, x, y);
-            };
-        })
-        //@ts-ignore
-        .styleTween("stroke-opacity", function (d, i) {
-            return function (t: number) {
-                return 0.7 + (opacity[i] - 0.7) * (Math.sin(t * 2 * Math.PI));
-            };
-        });
-
-
-    sinus2
-        .transition().
-        duration(3000).ease(d3.easeLinear)
-        //@ts-ignore	
-        .attrTween("d", function (d, i) {
-            return function (t) {
-                return sinusHarm(d.cycles, m, d.ampl + (Math.sin(t * 2 * Math.PI)) * (delta[i]), d.shiftPi + t * 2 * Math.PI, d.shiftY, x, y);
-            };
-        })
-
-
-}, 3000); 
+sinusGradient.createLinearGradient(true, d3.color(bronze).darker(2).rgb(), bronze, 1, 3, 8, "linearTest1");
+const rect9 = svgSinusHarm.append("rect")
+.attr("x", 4)
+.attr("y", 304)
+.attr("width", widthHarm - 8)
+.attr("height", heightHarm - 8)
+.attr("stroke", "none")
+//@ts-ignore
+.attr('fill', "url(#linearTest1)")
+.attr("opacity", 0.7);

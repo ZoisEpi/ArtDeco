@@ -23,6 +23,11 @@ class GlowGradient {
         filter.append("feGaussianBlur")
             .attr("stdDeviation", 3)
             .attr("result", "colored2Blur");
+        const filter2 = this.defs.append("filter")
+            .attr("id", "blurHighStd");
+        filter2.append("feGaussianBlur")
+            .attr("stdDeviation", 8)
+            .attr("result", "colored2Blur");
     }
     createLinearGradient(horizontal, colorMajor, colorHighlight, repeatMajorBetweenMajor, repeatPattern, second, id) {
         let colors = [];
