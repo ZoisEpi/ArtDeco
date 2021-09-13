@@ -58,7 +58,7 @@ class plot_cross {
         area.yScale.domain([0, d3.max(bins, function (d) { return d.length; })]);
         area.svg.select("#yAxis")
             .transition()
-            .duration(3000)
+            .duration(5000)
             //@ts-ignore
             .call(d3.axisLeft(area.yScale));
         area.svg.selectAll("rect")
@@ -80,26 +80,26 @@ class plot_cross {
             //@ts-ignore
             .attr("transform", function (d) { return `translate(${area.xScale(d.x0)}, ${area.yScale(d.length)})`; })
             //@ts-ignore
-            .attr("height", function (d) { return 400 - area.yScale(d.length); })
+            .attr("height", function (d) { return area.height - area.yScale(d.length); })
             //@ts-ignore
             .attr("fill-opacity", "0.6");
         area.svg.select("#xAxisGrid")
             .transition()
-            .duration(3000)
+            .duration(5000)
             .attr("opacity", "0")
             //@ts-ignore
             .call(d3.axisBottom(area.xScale).ticks(20).tickSize(0).tickFormat(""));
         area.svg.select("#yAxisGrid")
             .transition()
-            .duration(3000)
+            .duration(5000)
             .attr("opacity", "1")
             //@ts-ignore
-            .call(d3.axisLeft(area.yScale).tickSize(-1.0 * 400).tickFormat(""));
+            .call(d3.axisLeft(area.yScale).tickSize(-1.0 * area.width).tickFormat(""));
         area.svg.selectAll(".dot")
             .transition()
             .ease(d3.easeBounce)
-            .delay(function (_d, i) { return (i * 6); })
-            .duration(3000)
+            .delay(function (_d, i) { return (i * 5); })
+            .duration(4000)
             //@ts-ignore
             .attr("cy", function (d) { return area.yScale(0); })
             .attr("opacity", "0");

@@ -18,8 +18,8 @@ class plot_area {
     constructor(svgCreated: d3.Selection<SVGGElement, unknown, HTMLElement, any>) {
 
         this.svg = svgCreated;
-        this.width = 400;
-        this.height = 400;
+        this.width = 500;
+        this.height = 500;
 
         var svg = this.svg;
 

@@ -6,13 +6,13 @@ class plot_project {
             .style("background", "black");
         //@ts-ignore        
         const bbox = div.node().getBoundingClientRect();
-        var width = 400;
-        var height = 400;
+        var width = 500;
+        var height = 500;
         var margin = { top: bbox.height / 2.0 - height / 2.0, right: 30, bottom: 30, left: bbox.width / 2.0 - width / 2.0 };
         const svg = div
             .append("svg")
-            .attr("width", width + margin.right + margin.left)
-            .attr("height", height + margin.bottom + margin.top);
+            .attr("width", "100%")
+            .attr("height", "100vh");
         const elementPlot = svg.append("g")
             .style("background", "black")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");

@@ -1,8 +1,8 @@
 class plot_area {
     constructor(svgCreated) {
         this.svg = svgCreated;
-        this.width = 400;
-        this.height = 400;
+        this.width = 500;
+        this.height = 500;
         var svg = this.svg;
         var width = this.width;
         var height = this.height;
