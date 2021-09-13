@@ -31,6 +31,7 @@ class ArtDecoBorder {
     }
 
     buildRect(group: d3.Selection<SVGGElement, unknown, HTMLElement, any>) {
+
         const thisBorder = this;
         const sizeLargeRect = this.size;
 
