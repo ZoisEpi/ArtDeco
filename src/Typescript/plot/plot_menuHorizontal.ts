@@ -25,6 +25,6 @@ class plot_menuHorizontal {
                 .attr("fill", "#00AAAA")})
         .on("click", function () { project.toHorizontalHisto()
             });
-
+            
     }
 }
