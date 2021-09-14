@@ -31,6 +31,10 @@ class plot_project {
         var cross = this.cross;
         cross.transitionToBottom();
     }
+    toCrossPlot() {
+        var cross = this.cross;
+        cross.transitionToCross();
+    }
 }
 new plot_project();
 
