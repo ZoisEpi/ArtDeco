@@ -19,6 +19,8 @@ class plot_project {
         .append("svg")
         .attr("width", "100%")
         .attr("height", "100vh");
+        var glowGradient = new GlowGradient(svg);
+        glowGradient.creatediagonalGradient("#00FFFF", "#00AAAA", 2, 1, 4, "diagTest1");
 
         const elementPlot = svg.append("g")
             .style("background", "black")

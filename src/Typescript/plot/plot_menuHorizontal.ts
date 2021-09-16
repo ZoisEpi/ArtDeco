@@ -15,20 +15,54 @@ class plot_menuHorizontal {
 
         var groupCross = svg.append("g").attr("transform",  "translate(" + 5 + "," + 5 + ")");
 
+        groupCross.append("circle")
+        .attr("cx", "10" )
+        .attr("cy", "5" )
+        .attr("r", 2)
+        .style("fill", "#00FFFF")
+        .style("fill-opacity", 0.6);
+
+        groupCross.append("circle")
+
+        .attr("cx", "15" )
+        .attr("cy", "25" )
+        .attr("r", 2)
+        .style("fill", "#00FFFF")
+        .style("fill-opacity", 0.6);
+
+
+        groupCross.append("circle")
+        .attr("cx", "5" )
+        .attr("cy", "20" )
+        .attr("r", 2)
+        .style("fill", "#00FFFF")
+        .style("fill-opacity", 0.6);
+
+        groupCross.append("circle")
+        .attr("cx", "20" )
+        .attr("cy", "10" )
+        .attr("r", 2)
+        .style("fill", "#00FFFF")
+        .style("fill-opacity", 0.6);
+
         groupCross.append('rect')
         .attr("id", "menuCross")
         .attr("x", 0)
         .attr("y", 0)
         .attr("width", 30)
         .attr("height", 30)            
-        .attr("stroke", "white")
-        .attr("fill", "black")
-        .attr("opacity", "0")
+        .attr("stroke", "black")
+        .style("fill", "black")
+        .style("fill-opacity", 1)
         .on("click", function () { project.toCrossPlot()
             }
         )        .transition()
         .duration(6000)
-        .attr("opacity", "1");
+        .attr("stroke", "white")
+        .attr("opacity", "1")
+        .style("fill-opacity", 0);
+
+
 
 
 

@@ -72,7 +72,7 @@ class plot_cross {
             .attr("width", function (d) { return area.xScale(d.x1) - area.xScale(d.x0) - 1; })
             //@ts-ignore
             .attr("height", function (d) { return 0; })
-            .style("fill", "#00FFFF")
+            .style("fill", "url(#diagTest1)")
             .attr("fill-opacity", "0.0");
         area.svg.selectAll(".histoHoriz")
             .transition()
