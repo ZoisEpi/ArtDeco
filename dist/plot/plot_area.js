@@ -1,8 +1,9 @@
 class plot_area {
-    constructor(svgCreated) {
+    constructor(svgCreated, datad) {
         this.svg = svgCreated;
         this.width = 500;
         this.height = 500;
+        this.data = datad;
         var svg = this.svg;
         var width = this.width;
         var height = this.height;
@@ -36,37 +37,97 @@ class plot_area {
             .attr("opacity", "0");
     }
     transitionFromNowhere() {
+        this.transitionToXData();
+        this.transitionToYData();
+    }
+    transitionToYData() {
         var xScale = this.xScale;
         var yScale = this.yScale;
-        var height = this.height;
         var width = this.width;
         var svg = this.svg;
         xScale.domain([0, 1000]);
         yScale.domain([0, 1000]);
         svg.select("#yAxis")
             .transition()
-            .duration(6000)
+            .duration(5000)
             .attr("opacity", "1")
             //@ts-ignore
             .call(d3.axisLeft(yScale));
-        svg.select("#xAxis")
-            .transition()
-            .duration(6000)
-            .attr("opacity", "1")
-            //@ts-ignore
-            .call(d3.axisBottom(xScale));
         svg.select("#yAxisGrid")
             .transition()
-            .duration(6000)
+            .duration(5000)
             .attr("opacity", "1")
             //@ts-ignore
             .call(d3.axisLeft(yScale).ticks(20).tickSize(-1.0 * width).tickFormat(""));
+    }
+    transitionToXData() {
+        var xScale = this.xScale;
+        var height = this.height;
+        var svg = this.svg;
+        xScale.domain([0, 1000]);
+        svg.select("#xAxis")
+            .transition()
+            .duration(5000)
+            .attr("opacity", "1")
+            //@ts-ignore
+            .call(d3.axisBottom(xScale));
         svg.select("#xAxisGrid")
             .transition()
-            .duration(6000)
+            .duration(5000)
             .attr("opacity", "1")
             //@ts-ignore
             .call(d3.axisBottom(xScale).ticks(20).tickSize(-1.0 * height).tickFormat(""));
+    }
+    transitionToBottom() {
+        var dataBins = this.data.getDataBins();
+        var area = this;
+        this.transitionToXData();
+        //@ts-ignore
+        this.yScale.domain([0, d3.max(dataBins, function (d) { return d.yLength; })]);
+        this.svg.select("#yAxis")
+            .transition()
+            .duration(5000)
+            //@ts-ignore
+            .call(d3.axisLeft(area.yScale));
+        this.svg.select("#xAxisGrid")
+            .transition()
+            .duration(5000)
+            .attr("opacity", "0")
+            //@ts-ignore
+            .call(d3.axisBottom(area.xScale).ticks(20).tickSize(0).tickFormat(""));
+        this.svg.select("#yAxisGrid")
+            .transition()
+            .duration(5000)
+            .attr("opacity", "1")
+            //@ts-ignore
+            .call(d3.axisLeft(area.yScale).tickSize(-1.0 * area.width).tickFormat(""));
+    }
+    transitionToLeft() {
+        var dataBins = this.data.getDataBins();
+        var area = this;
+        this.transitionToYData();
+        //@ts-ignore
+        this.xScale.domain([0, d3.max(dataBins, function (d) { return d.xLength; })]);
+        this.svg.select("#xAxis")
+            .transition()
+            .duration(5000)
+            //@ts-ignore
+            .call(d3.axisBottom(area.xScale));
+        this.svg.select("#yAxisGrid")
+            .transition()
+            .duration(5000)
+            .attr("opacity", "0")
+            //@ts-ignore
+            .call(d3.axisLeft(area.yScale).ticks(20).tickSize(0).tickFormat(""));
+        this.svg.select("#xAxisGrid")
+            .transition()
+            .duration(5000)
+            .attr("opacity", "1")
+            //@ts-ignore
+            .call(d3.axisBottom(area.xScale).tickSize(-1.0 * area.width).tickFormat(""));
+    }
+    transitionToCross() {
+        this.transitionFromNowhere();
     }
 }
 

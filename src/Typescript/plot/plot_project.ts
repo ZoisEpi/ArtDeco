@@ -1,6 +1,7 @@
 class plot_project {
 
     cross : plot_cross
+    area : plot_area
 
     constructor() {
         const div = d3.select("body").append("div")
@@ -20,23 +21,34 @@ class plot_project {
         .attr("width", "100%")
         .attr("height", "100vh");
         var glowGradient = new GlowGradient(svg);
-        glowGradient.creatediagonalGradient("#00FFFF", "#00AAAA", 2, 1, 4, "diagTest1");
+        glowGradient.creatediagonalGradient("#007777", "BLACK", 1, 1, 0, "diagTest1");
 
         const elementPlot = svg.append("g")
             .style("background", "black")
             .attr("transform",  "translate(" + margin.left + "," + margin.top + ")");
 
+        svg.append("clipPath")       
+	        .attr("id", "ClipRect") 
+            .append("rect")            
+            .attr("x", 0 ) 
+            .attr("y", 0 )
+            .attr("height", 500)
+            .attr("width", 500);
+
         const elementMenuHor = svg.append("g")
             .style("background", "black")
             .attr("transform",  "translate(" + margin.left + "," + (margin.top - 50) + ")");
 
-        var area = new plot_area(elementPlot);
-
-        new plot_menuHorizontal(elementMenuHor, this)
         var data = new plot_data();
+
+        var area = new plot_area(elementPlot, data);
         var cross = new plot_cross(area, data);
 
+        
+        new plot_menuHorizontal(elementMenuHor, this)
+
         this.cross = cross;
+        this.area = area;
 
         area.transitionFromNowhere();
         cross.transitionFromNowhere();
@@ -45,13 +57,27 @@ class plot_project {
     toHorizontalHisto() {
 
         var cross = this.cross;
+        var area = this.area;
 
+        area.transitionToBottom();
         cross.transitionToBottom();
+    }
+
+
+    toLeftHisto() {
+
+        var cross = this.cross;
+        var area = this.area;
+
+        area.transitionToLeft();
+        cross.transitionToLeft();
     }
 
     toCrossPlot() {
         var cross = this.cross;
+        var area = this.area;
 
+        area.transitionToCross();
         cross.transitionToCross();
     }
 
