@@ -45,17 +45,42 @@ class plot_menuHorizontal {
             project.toCrossPlot();
         })
             .on('mouseover', function () {
-            d3.select(this).style("filter", "url(#glow)");
+            d3.select(this).style("fill", "url(#DiagGrad)");
         })
             .on('mouseout', function () {
-            d3.select(this).style("filter", "none");
+            d3.select(this).style("fill", "black");
         });
         menuCross.transition()
             .duration(6000)
             .style("fill-opacity", 0);
         //@ts-ignore
         this.buttonList.push(menuCross);
-        var groupHorizHisto = svg.append("g").attr("transform", "translate(" + 60 + "," + 5 + ")");
+        var groupDensity = svg.append("g").attr("transform", "translate(" + 60 + "," + 5 + ")");
+        var menuDensity = groupDensity.append('rect')
+            .attr("id", "menuDensity")
+            .attr("x", 0)
+            .attr("y", 0)
+            .attr("width", 30)
+            .attr("height", 30)
+            .attr("stroke", "black")
+            .style("fill", "black")
+            .style("fill-opacity", 1)
+            .on("click", function () {
+            plot_menuHorizontal.selectButton(d3.select(this).attr("id"));
+            // project.toCrossPlot()
+        })
+            .on('mouseover', function () {
+            d3.select(this).style("fill", "url(#DiagGrad)");
+        })
+            .on('mouseout', function () {
+            d3.select(this).style("fill", "black");
+        });
+        menuDensity.transition()
+            .duration(6000)
+            .style("fill-opacity", 0);
+        //@ts-ignore
+        this.buttonList.push(menuDensity);
+        var groupHorizHisto = svg.append("g").attr("transform", "translate(" + 120 + "," + 5 + ")");
         groupHorizHisto.append('rect')
             .attr("x", 1)
             .attr("y", 10)
@@ -94,17 +119,17 @@ class plot_menuHorizontal {
             project.toHorizontalHisto();
         })
             .on('mouseover', function () {
-            d3.select(this).style("filter", "url(#glow)");
+            d3.select(this).style("fill", "url(#DiagGrad)");
         })
             .on('mouseout', function () {
-            d3.select(this).style("filter", "none");
+            d3.select(this).style("fill", "black");
         });
         menuHistoH.transition()
             .duration(6000)
             .style("fill-opacity", 0);
         //@ts-ignore
         this.buttonList.push(menuHistoH);
-        var groupVertHisto = svg.append("g").attr("transform", "translate(" + 120 + "," + 5 + ")");
+        var groupVertHisto = svg.append("g").attr("transform", "translate(" + 180 + "," + 5 + ")");
         groupVertHisto.append('rect')
             .attr("x", 1)
             .attr("y", 1)
@@ -143,10 +168,10 @@ class plot_menuHorizontal {
             project.toLeftHisto();
         })
             .on('mouseover', function () {
-            d3.select(this).style("filter", "url(#glow)");
+            d3.select(this).style("fill", "url(#DiagGrad)"); // "url(#DiagGrad)");
         })
             .on('mouseout', function () {
-            d3.select(this).style("filter", "none");
+            d3.select(this).style("fill", "black");
         });
         menuHistoV.transition()
             .duration(6000)

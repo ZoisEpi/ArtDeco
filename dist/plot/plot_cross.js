@@ -5,6 +5,7 @@ class plot_cross {
         var area = this.area;
         var dataToPlot = this.data.getData();
         var dataBins = this.data.getDataBins();
+        var plot_cross = this;
         this.area.svg.append('g')
             .selectAll("dot")
             //@ts-ignore
@@ -27,8 +28,15 @@ class plot_cross {
             .attr("width", "0")
             //@ts-ignore
             .attr("height", "0")
-            .style("fill", "url(#diagTest1)")
-            .attr("fill-opacity", "1");
+            .attr("fill-opacity", "1")
+            .on('mouseover', function () {
+            //@ts-ignore
+            d3.select(this).style("fill", plot_cross.highlightGrad); // "url(#DiagGrad)");
+        })
+            .on('mouseout', function () {
+            //@ts-ignore
+            d3.select(this).style("fill", plot_cross.currentGrad);
+        });
     }
     transitionFromNowhere() {
         var area = this.area;
@@ -77,7 +85,7 @@ class plot_cross {
         area.svg.insert("g", "g")
             .attr("clip-path", "url(#ClipRect)")
             .attr("class", "densityMap")
-            .attr("opacity", 0.5)
+            .attr("opacity", 0.0)
             .selectAll("path")
             .data(densityData)
             .enter().append("path")
@@ -87,6 +95,9 @@ class plot_cross {
     }
     transitionToBottom() {
         var area = this.area;
+        this.currentGrad = "url(#HorizontalGrad)";
+        this.highlightGrad = "url(#HorizontalGrad2)";
+        var currentGrad = this.currentGrad;
         area.svg.selectAll(".histoHoriz")
             .transition()
             .duration(2500)
@@ -101,7 +112,9 @@ class plot_cross {
             //@ts-ignore
             .attr("transform", function (d) { return `translate(${area.xScale(d.y0)}, ${area.yScale(d.yLength)})`; })
             //@ts-ignore
-            .attr("height", function (d) { return area.height - area.yScale(d.yLength); });
+            .attr("height", function (d) { return area.height - area.yScale(d.yLength); })
+            //@ts-ignore        
+            .style("fill", currentGrad);
         area.svg.selectAll(".dot")
             .transition()
             .ease(d3.easeBounce)
@@ -116,6 +129,9 @@ class plot_cross {
     }
     transitionToLeft() {
         var area = this.area;
+        this.currentGrad = "url(#VerticalGrad)";
+        this.highlightGrad = "url(#VerticalGrad2)";
+        var currentGrad = this.currentGrad;
         area.svg.selectAll(".histoHoriz")
             .transition()
             .duration(2500)
@@ -130,7 +146,9 @@ class plot_cross {
             //@ts-ignore
             .attr("transform", function (d) { return `translate(${area.xScale(0)}, ${area.yScale(d.x1)})`; })
             //@ts-ignore
-            .attr("width", function (d) { return area.xScale(d.xLength); });
+            .attr("width", function (d) { return area.xScale(d.xLength); })
+            //@ts-ignore
+            .style("fill", currentGrad);
         area.svg.selectAll(".dot")
             .transition()
             .ease(d3.easeBounce)
@@ -149,11 +167,15 @@ class plot_cross {
             .transition()
             .duration(5000)
             //@ts-ignore
-            .attr("transform", function (d) { return `translate(${area.xScale(0)}, ${area.yScale(0)})`; })
+            .attr("transform", function (d) { return `translate(${area.xScale(500)}, ${area.yScale(500)})`; })
             //@ts-ignore
             .attr("height", "0")
             .attr("width", "0")
-            .attr("fill-opacity", "0.0");
+            .attr("fill-opacity", "0.0")
+            .transition()
+            .duration(0)
+            //@ts-ignore
+            .attr("transform", function (d) { return `translate(${area.xScale(0)}, ${area.yScale(0)})`; });
         var numbDot = area.svg.selectAll(".dot").size();
         var delay = 2000.0 / numbDot;
         area.svg.selectAll(".dot")

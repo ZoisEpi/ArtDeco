@@ -21,7 +21,13 @@ class plot_project {
         .attr("width", "100%")
         .attr("height", "100vh");
         var glowGradient = new GlowGradient(svg);
-        glowGradient.creatediagonalGradient("#007777", "BLACK", 1, 1, 0, "diagTest1");
+        glowGradient.creatediagonalGradient("#007777", "WHITE", 2, 1, 1, "DiagGrad");
+
+        glowGradient.createLinearGradient(true, "#00EEEE", "BLACK", 1, 1, 0, "HorizontalGrad2");
+        glowGradient.createLinearGradient(true, "#007777", "BLACK", 1, 1, 0, "HorizontalGrad");
+
+        glowGradient.createLinearGradient(false, "#00EEEE", "BLACK", 1, 1, 0, "VerticalGrad2");
+        glowGradient.createLinearGradient(false, "#007777", "BLACK", 1, 1, 0, "VerticalGrad");
 
         const elementPlot = svg.append("g")
             .style("background", "black")
