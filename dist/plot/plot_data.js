@@ -13,17 +13,17 @@ class plot_data {
             //@ts-ignore
             .value(function (d) { return d.yVal; })
             .domain([0, 1000])
-            .thresholds(d3.scaleLinear().domain([0, 1000]).ticks(20));
+            .thresholds(d3.scaleLinear().domain([0, 1000]).ticks(50));
         //@ts-ignore
         var binsY = histogramY(data);
         const histogramX = d3.histogram()
             //@ts-ignore
             .value(function (d) { return d.xVal; })
             .domain([0, 1000])
-            .thresholds(d3.scaleLinear().domain([0, 1000]).ticks(20));
+            .thresholds(d3.scaleLinear().domain([0, 1000]).ticks(50));
         //@ts-ignore
         var binsX = histogramX(data);
-        d3.range(20).forEach(d => dataBins.push({
+        d3.range(binsX.length).forEach(d => dataBins.push({
             x0: binsX[d].x0,
             x1: binsX[d].x1,
             xLength: binsX[d].length,

@@ -67,7 +67,7 @@ class plot_menuHorizontal {
             .style("fill-opacity", 1)
             .on("click", function () {
             plot_menuHorizontal.selectButton(d3.select(this).attr("id"));
-            // project.toCrossPlot()
+            project.toDensityPlot();
         })
             .on('mouseover', function () {
             d3.select(this).style("fill", "url(#DiagGrad)");

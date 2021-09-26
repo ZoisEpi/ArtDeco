@@ -91,7 +91,7 @@ class plot_menuHorizontal {
         
         .on("click", function () { 
             plot_menuHorizontal.selectButton(d3.select(this).attr("id"));
-           // project.toCrossPlot()
+            project.toDensityPlot();
             }
         )
         .on('mouseover', function () {

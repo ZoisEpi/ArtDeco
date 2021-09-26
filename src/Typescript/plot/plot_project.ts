@@ -2,6 +2,7 @@ class plot_project {
 
     cross : plot_cross
     area : plot_area
+    density : plot_density
 
     constructor() {
         const div = d3.select("body").append("div")
@@ -49,42 +50,47 @@ class plot_project {
 
         var area = new plot_area(elementPlot, data);
         var cross = new plot_cross(area, data);
+        var density = new plot_density(area, data);
 
         
         new plot_menuHorizontal(elementMenuHor, this)
 
         this.cross = cross;
         this.area = area;
+        this.density = density;
 
         area.transitionFromNowhere();
         cross.transitionFromNowhere();
+        density.transitionFromNowhere();
     }
 
     toHorizontalHisto() {
 
-        var cross = this.cross;
-        var area = this.area;
-
-        area.transitionToBottom();
-        cross.transitionToBottom();
+        this.area.transitionToBottom();
+        this.cross.transitionToBottom();
+        this.density.transitionToBottom();
     }
 
 
     toLeftHisto() {
 
-        var cross = this.cross;
-        var area = this.area;
-
-        area.transitionToLeft();
-        cross.transitionToLeft();
+        this.area.transitionToLeft();
+        this.cross.transitionToLeft();
+        this.density.transitionToLeft();
     }
 
     toCrossPlot() {
-        var cross = this.cross;
-        var area = this.area;
 
-        area.transitionToCross();
-        cross.transitionToCross();
+        this.area.transitionToCross();
+        this.cross.transitionToCross();
+        this.density.transitionToCross();
+    }
+
+    toDensityPlot() {
+
+      //  this.area.transitionToDensity();
+        this.cross.transitionToDensity();
+        this.density.transitionToDensity();
     }
 
 }
