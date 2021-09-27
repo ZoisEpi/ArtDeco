@@ -225,7 +225,7 @@ class plot_cross {
             .duration(1500)
                 //@ts-ignore
             .attr("r", 15)
-            .attr("opacity", "0.5")
+            .attr("opacity", "0.1")
             .transition()
             .attr("r", 2)
             .attr("opacity", "0.0")

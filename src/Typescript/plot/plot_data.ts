@@ -27,7 +27,7 @@ class plot_data {
     //@ts-ignore
         .value(function(d) { return d.yVal; })  
         .domain([0, 1000]) 
-        .thresholds(d3.scaleLinear().domain([0, 1000]).ticks(50));
+        .thresholds(d3.scaleLinear().domain([0, 1000]).ticks(20));
 
     //@ts-ignore
     var binsY = histogramY(data);
@@ -37,7 +37,7 @@ class plot_data {
     //@ts-ignore
         .value(function(d) { return d.xVal; })  
         .domain([0, 1000]) 
-        .thresholds(d3.scaleLinear().domain([0, 1000]).ticks(50));
+        .thresholds(d3.scaleLinear().domain([0, 1000]).ticks(20));
 
     //@ts-ignore
     var binsX = histogramX(data);
