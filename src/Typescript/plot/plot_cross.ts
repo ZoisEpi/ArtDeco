@@ -226,9 +226,11 @@ class plot_cross {
                 //@ts-ignore
             .attr("r", 15)
             .attr("opacity", "0.1")
+            .style("fill", "#00CCCC")
             .transition()
             .attr("r", 2)
             .attr("opacity", "0.0")
+            .style("fill", "#00FFFF")
 
     }
 

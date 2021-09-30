@@ -79,6 +79,62 @@ class plot_menuHorizontal {
 
         var groupDensity = svg.append("g").attr("transform",  "translate(" + 60 + "," + 5 + ")");
 
+        groupDensity.append('rect')
+        .attr("x", 1)
+        .attr("y", 1)
+        .attr("width", 29)
+        .attr("height", 29)            
+        .attr("stroke", "black")
+        .style("fill",  "#006666")
+        .style("fill-opacity", 0.6);  
+
+
+        var path = d3.path();
+        path.moveTo(0,30);
+        path.lineTo(30, 30);
+        path.quadraticCurveTo( 22.5 , 0, 15, 15);
+        path.quadraticCurveTo( 7.5 ,25, 0, 0);
+        path.closePath();
+
+        groupDensity.append("path")
+                //@ts-ignore
+            .attr("d", path)
+            .attr("stroke", "black")
+            .style("fill", "#00AAAA")
+            .style("fill-opacity", 0.6)
+
+
+            var path2 = d3.path();
+            path2.moveTo(0,30);
+            path2.lineTo(25, 30);
+            path2.quadraticCurveTo( 15 , 20 , 10, 25);
+            path2.quadraticCurveTo( 5 ,30, 0, 10);
+            path2.closePath();
+
+            groupDensity.append("path")
+                            //@ts-ignore
+            .attr("d", path2)
+                .attr("stroke", "black")
+                .style("fill", "#00DDDD")
+                .style("fill-opacity", 0.6)
+    
+                var path3 = d3.path();
+                path3.moveTo(5,0);
+                path3.quadraticCurveTo( 15 , 15 , 20, 0);
+                path3.closePath();
+    
+
+
+                groupDensity.append("path")
+                            //@ts-ignore
+                            .attr("d", path3)
+                    .attr("stroke", "black")
+                    .style("fill", "#00AAAA")
+                    .style("fill-opacity", 0.6)
+
+                
+
+
         var menuDensity = groupDensity.append('rect')
         .attr("id", "menuDensity")
         .attr("x", 0)

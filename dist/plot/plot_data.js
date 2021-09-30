@@ -1,24 +1,28 @@
 class plot_data {
     constructor() {
-        console.log("begin");
         this.data = [];
         var data = this.data;
         this.dataBins = [];
         var dataBins = this.dataBins;
-        d3.range(1000).forEach(_d => data.push({
-            xVal: Math.random() * 1000,
-            yVal: Math.random() * 1000
+        const randF1 = d3.randomNormal(600, 125);
+        const randF2 = d3.randomNormal(200, 75);
+        const randF3 = d3.randomNormal(400, 100);
+        const randF4 = d3.randomNormal(0, 50);
+        d3.range(1000).forEach(d => data.push({
+            xVal: d % 2 ? randF1() : randF2(),
+            //@ts-ignore
+            yVal: randF3()
         }));
         const histogramY = d3.histogram()
             //@ts-ignore
-            .value(function (d) { return d.yVal; })
+            .value(function (d) { return d.xVal; })
             .domain([0, 1000])
             .thresholds(d3.scaleLinear().domain([0, 1000]).ticks(20));
         //@ts-ignore
         var binsY = histogramY(data);
         const histogramX = d3.histogram()
             //@ts-ignore
-            .value(function (d) { return d.xVal; })
+            .value(function (d) { return d.yVal; })
             .domain([0, 1000])
             .thresholds(d3.scaleLinear().domain([0, 1000]).ticks(20));
         //@ts-ignore

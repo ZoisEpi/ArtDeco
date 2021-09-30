@@ -40,14 +40,14 @@ class plot_density {
 
         area.svg.insert("g", "g")
         .attr("clip-path","url(#ClipRect)")
-        .attr("class", "densityMap")
-        .attr("opacity", 0.0)
         .selectAll("path")
         .data(densityData)
         .enter().append("path")
+        .attr("class", "densityMap")
         .attr("d", d3.geoPath())
-        .attr("fill", function(d) { console.log(d.value); return color(d.value); })
+        .attr("fill", function(d) { return color(d.value); })
         .attr("stroke", "BLACK")
+        .attr("opacity", 0.0)
     }
 
     transitionToBottom() {
@@ -64,9 +64,19 @@ class plot_density {
 
 
     transitionToCross() {
+        var area = this.area;
 
-        this.removeDensity();
+        area.svg.selectAll(".densityMap")
+            .transition()
+            .delay(function(_d,i){return(2000- i*100)})
+            .duration(1000)
+            //@ts-ignore
+            .attr("opacity", function(){ return Math.min(Number(d3.select(this).attr("opacity")), 0.5)})
+            .transition()
+            .duration(function(_d,i){return(i*100)})
+            .attr("opacity", "0.0")
     }
+
 
     removeDensity() {
 
