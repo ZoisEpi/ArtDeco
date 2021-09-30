@@ -21,11 +21,12 @@ class plot_density {
         var min = d3.min(densityData, function (d) {
             return d.value;
         });
-        const color = d3.scaleLinear()
+        this.color = d3.scaleLinear()
             //@ts-ignore
             .domain([min, max])
             //@ts-ignore
             .range(["#000000", "#00AAAA"]);
+        var color = this.color;
         area.svg.insert("g", "g")
             .attr("clip-path", "url(#ClipRect)")
             .selectAll("path")
@@ -38,7 +39,15 @@ class plot_density {
             .attr("opacity", 0.0);
     }
     transitionToBottom() {
-        this.removeDensity();
+        var area = this.area;
+        var color = this.color;
+        area.svg.selectAll(".densityMap")
+            .transition()
+            .duration(5000)
+            .attr("transform", "translate(0, -500) scale(1,4)")
+            .attr("opacity", "0.0")
+            .transition()
+            .attr("transform", "");
     }
     transitionToLeft() {
         this.removeDensity();

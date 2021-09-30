@@ -35,33 +35,40 @@ class plot_project {
         var data = new plot_data();
         var area = new plot_area(elementPlot, data);
         var cross = new plot_cross(area, data);
+        var histo = new plot_histo(area, data);
         var density = new plot_density(area, data);
         new plot_menuHorizontal(elementMenuHor, this);
         this.cross = cross;
+        this.histo = histo;
         this.area = area;
         this.density = density;
         area.transitionFromNowhere();
+        histo.transitionFromNowhere();
         cross.transitionFromNowhere();
         density.transitionFromNowhere();
     }
     toHorizontalHisto() {
         this.area.transitionToBottom();
         this.cross.transitionToBottom();
+        this.histo.transitionToBottom();
         this.density.transitionToBottom();
     }
     toLeftHisto() {
         this.area.transitionToLeft();
         this.cross.transitionToLeft();
+        this.histo.transitionToLeft();
         this.density.transitionToLeft();
     }
     toCrossPlot() {
         this.area.transitionToCross();
         this.cross.transitionToCross();
+        this.histo.transitionToCross();
         this.density.transitionToCross();
     }
     toDensityPlot() {
         //  this.area.transitionToDensity();
         this.cross.transitionToDensity();
+        this.histo.transitionToDensity();
         this.density.transitionToDensity();
     }
 }

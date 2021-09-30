@@ -4,14 +4,15 @@ class plot_data {
         var data = this.data;
         this.dataBins = [];
         var dataBins = this.dataBins;
-        const randF1 = d3.randomNormal(600, 125);
-        const randF2 = d3.randomNormal(200, 75);
-        const randF3 = d3.randomNormal(400, 100);
-        const randF4 = d3.randomNormal(0, 50);
+        const randF1 = d3.randomNormal(200, 30);
+        const randF2 = d3.randomNormal(500, 100);
+        const randF4 = d3.randomNormal(800, 80);
+        const randF3 = d3.randomNormal(300, 70);
+        const randF5 = d3.randomNormal(600, 100);
         d3.range(1000).forEach(d => data.push({
-            xVal: d % 2 ? randF1() : randF2(),
+            xVal: d % 5 == 0 ? randF4() : d % 4 == 0 ? randF2() : Math.random() * 1000,
             //@ts-ignore
-            yVal: randF3()
+            yVal: d % 5 == 0 ? randF5() : d % 4 == 0 ? randF3() : Math.random() * 1000
         }));
         const histogramY = d3.histogram()
             //@ts-ignore

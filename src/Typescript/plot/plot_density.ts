@@ -2,6 +2,7 @@ class plot_density {
 
     area : plot_area;
     data : plot_data;
+    color : d3.ScaleLinear<number, number>
 
     constructor(aread : plot_area, datad : plot_data) {
         this.area = aread;
@@ -32,11 +33,13 @@ class plot_density {
             return d.value;
         })
         
-        const color = d3.scaleLinear()
+         this.color = d3.scaleLinear()
         //@ts-ignore
         .domain([min, max])
         //@ts-ignore
         .range(["#000000", "#00AAAA"]);
+
+        var color = this.color;
 
         area.svg.insert("g", "g")
         .attr("clip-path","url(#ClipRect)")
@@ -51,8 +54,16 @@ class plot_density {
     }
 
     transitionToBottom() {
+        var area = this.area;
+        var color = this.color;
 
-        this.removeDensity();
+        area.svg.selectAll(".densityMap")           
+            .transition()
+            .duration(5000)
+            .attr("transform", "translate(0, -500) scale(1,4)")
+            .attr("opacity", "0.0")
+            .transition()
+            .attr("transform", "")
     }
 
 
