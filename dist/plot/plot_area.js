@@ -129,6 +129,9 @@ class plot_area {
     transitionToCross() {
         this.transitionFromNowhere();
     }
+    transitionToDensity() {
+        this.transitionFromNowhere();
+    }
 }
 
 //# sourceMappingURL=../maps/plot/plot_area.js.map

@@ -188,11 +188,11 @@ class plot_area {
     }
 
 
-
-
-
     transitionToCross() {
+        this.transitionFromNowhere();
+    }
 
+    transitionToDensity() {
         this.transitionFromNowhere();
     }
 

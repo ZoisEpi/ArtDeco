@@ -66,7 +66,7 @@ class plot_project {
         this.density.transitionToCross();
     }
     toDensityPlot() {
-        //  this.area.transitionToDensity();
+        this.area.transitionToDensity();
         this.cross.transitionToDensity();
         this.histo.transitionToDensity();
         this.density.transitionToDensity();

@@ -59,11 +59,14 @@ class plot_density {
 
         area.svg.selectAll(".densityMap")           
             .transition()
-            .duration(5000)
-            .attr("transform", "translate(0, -500) scale(1,4)")
-            .attr("opacity", "0.0")
+            .delay(function(_d,i){return(i*200)})
+            .duration(1000)
+            .attr("fill", "BLACK")
+                                //@ts-ignore
+            .attr("opacity", "0")
             .transition()
-            .attr("transform", "")
+                    //@ts-ignore
+            .attr("fill", function(d) { return color(d.value); })
     }
 
 

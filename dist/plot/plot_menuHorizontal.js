@@ -52,7 +52,9 @@ class plot_menuHorizontal {
         });
         menuCross.transition()
             .duration(6000)
-            .style("fill-opacity", 0);
+            .style("fill-opacity", 0)
+            .style("fill-opacity", "0.0")
+            .attr("stroke", "white");
         //@ts-ignore
         this.buttonList.push(menuCross);
         var groupDensity = svg.append("g").attr("transform", "translate(" + 60 + "," + 5 + ")");
@@ -119,7 +121,9 @@ class plot_menuHorizontal {
         });
         menuDensity.transition()
             .duration(6000)
-            .style("fill-opacity", 0);
+            .style("fill-opacity", 0)
+            .style("fill-opacity", "0.3")
+            .attr("stroke", "#333333");
         //@ts-ignore
         this.buttonList.push(menuDensity);
         var groupHorizHisto = svg.append("g").attr("transform", "translate(" + 120 + "," + 5 + ")");
@@ -168,7 +172,9 @@ class plot_menuHorizontal {
         });
         menuHistoH.transition()
             .duration(6000)
-            .style("fill-opacity", 0);
+            .style("fill-opacity", 0)
+            .style("fill-opacity", "0.3")
+            .attr("stroke", "#333333");
         //@ts-ignore
         this.buttonList.push(menuHistoH);
         var groupVertHisto = svg.append("g").attr("transform", "translate(" + 180 + "," + 5 + ")");
@@ -217,10 +223,11 @@ class plot_menuHorizontal {
         });
         menuHistoV.transition()
             .duration(6000)
-            .style("fill-opacity", 0);
+            .style("fill-opacity", 0)
+            .style("fill-opacity", "0.3")
+            .attr("stroke", "#333333");
         //@ts-ignore
         this.buttonList.push(menuHistoV);
-        this.selectButton(menuCross.attr("id"));
     }
     selectButton(nameSel) {
         this.buttonList.forEach(function (d) {

@@ -72,7 +72,9 @@ class plot_menuHorizontal {
         
         menuCross.transition()
         .duration(6000)
-        .style("fill-opacity", 0);
+        .style("fill-opacity", 0)                   
+        .style("fill-opacity", "0.0")
+        .attr("stroke", "white");
 
         //@ts-ignore
         this.buttonList.push(menuCross);
@@ -159,7 +161,10 @@ class plot_menuHorizontal {
         
          menuDensity.transition()
         .duration(6000)
-        .style("fill-opacity", 0);
+        .style("fill-opacity", 0)
+        .style("fill-opacity", "0.3")
+        .attr("stroke", "#333333");
+
 
         //@ts-ignore
         this.buttonList.push(menuDensity);
@@ -220,6 +225,9 @@ class plot_menuHorizontal {
         menuHistoH.transition()
         .duration(6000)
         .style("fill-opacity", 0)
+        .style("fill-opacity", "0.3")
+        .attr("stroke", "#333333");
+
 
         //@ts-ignore
         this.buttonList.push(menuHistoH);
@@ -276,11 +284,13 @@ class plot_menuHorizontal {
         menuHistoV.transition()
             .duration(6000)
             .style("fill-opacity", 0)
+            .style("fill-opacity", "0.3")
+            .attr("stroke", "#333333");
 
         //@ts-ignore
         this.buttonList.push(menuHistoV);
 
-        this.selectButton(menuCross.attr("id"));
+
     }
 
     selectButton(nameSel : string) {
