@@ -9,7 +9,7 @@ class plot_data {
         const randF4 = d3.randomNormal(800, 80);
         const randF3 = d3.randomNormal(300, 70);
         const randF5 = d3.randomNormal(600, 100);
-        d3.range(1000).forEach(d => data.push({
+        d3.range(2000).forEach(d => data.push({
             xVal: d % 5 == 0 ? randF4() : d % 4 == 0 ? randF2() : Math.random() * 1000,
             //@ts-ignore
             yVal: d % 5 == 0 ? randF5() : d % 4 == 0 ? randF3() : Math.random() * 1000

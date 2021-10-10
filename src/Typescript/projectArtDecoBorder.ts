@@ -49,6 +49,7 @@ class ArtDecoBorder {
                 .attr("class", "rectBorder"  + i)
                 .attr("d", lineRect)
                 .attr("stroke", thisBorder.color)
+                .attr('stroke-width', '3')  
                 .attr("fill", "black")
                 .style("filter", "url(#glow)")
 

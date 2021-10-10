@@ -2,6 +2,7 @@ class plot_histo {
     constructor(aread, datad) {
         this.area = aread;
         this.data = datad;
+        this.isVisible = false;
         var area = this.area;
         var dataBins = this.data.getDataBins();
         this.area.svg.selectAll(".histoHoriz")
@@ -65,7 +66,6 @@ class plot_histo {
             //@ts-ignore
             .attr("height", function (d) { return area.height - area.yScale(d.yLength); })
             .attr("fill-opacity", "0.6");
-        console.log(area.svg.selectAll(".histoVert").size());
         area.svg.selectAll(".histoVert")
             .transition()
             .duration(5000)
@@ -81,6 +81,7 @@ class plot_histo {
             .attr("transform", function (d) { return `translate(0, 500)`; })
             .attr("height", "0")
             .attr("width", "0");
+        this.isVisible = true;
     }
     transitionToLeft() {
         var area = this.area;
@@ -114,9 +115,13 @@ class plot_histo {
             .attr("transform", function (d) { return `translate(0, 500)`; })
             .attr("height", "0")
             .attr("width", "0");
+        this.isVisible = true;
     }
     transitionToCross() {
         var area = this.area;
+        if (this.isVisible == false) {
+            return;
+        }
         area.svg.selectAll(".histoHoriz")
             .transition()
             .duration(5000)
@@ -147,9 +152,13 @@ class plot_histo {
             .attr("transform", function (d) { return `translate(${area.xScale(0)}, ${area.yScale(0)})`; })
             .attr("height", "0")
             .attr("width", "0");
+        this.isVisible = false;
     }
     transitionToDensity() {
         var area = this.area;
+        if (this.isVisible == false) {
+            return;
+        }
         area.svg.selectAll(".histoHoriz")
             .attr("fill-opacity", "0.6")
             .transition()
@@ -184,6 +193,7 @@ class plot_histo {
             .attr("transform", function (d) { return `translate(${area.xScale(0)}, ${area.yScale(0)})`; })
             .attr("height", "0")
             .attr("width", "0");
+        this.isVisible = false;
     }
 }
 
