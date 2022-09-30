@@ -3,7 +3,7 @@
     "version": "0.0.1",
     "description": "Art Deco Anmimation in D3",
     "dependencies": {
-        "d3": "4"
+        "d3": "7"
     },
     "devDependencies": {
         "@types/d3": "^5.7.2",
